@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="{{{ package.dottedname }}}"
+      metal:use-macro="context/main_template/macros/master">
+<body>
+  <metal:content-core fill-slot="content-core">
+  <metal:block define-macro="content-core">
+
+      <!--h2 i18n:translate="">Sample View</h2-->
+      <!--<div tal:replace="view/my_custom_view_method" />-->
+      <!--<div tal:replace="context/my_custom_field" />-->
+      <h2 i18n:translate="">View {{{view_template_name}}}</h2>
+      <h3 i18n:translate="">Fields from context</h3>
+{{% for i in my_schema %}}
+      <p><b>{{{i["name"]}}}:</b> <div style="border:1px solid red" tal:content="structure view/widgets/{{{i["name"]}}}/render" /></p>
+      <!--<p><b>{{{i["name"]}}}:</b> <div style="border:1px solid red" tal:content="structure python:view.widgets['{{{i["name"]}}}'].render()" /></p>-->
+{{% endfor %}}
+      <h3 i18n:translate="">Fields from view</h3>
+{{% for i in my_schema %}}
+{{% if i["type"] == "plone.schema.jsonfield.JSONField" %}}
+      <p><b>{{{i["name"]}}}:</b> <pre style="border:1px solid red; background-color: #ccc" tal:content="view/get_{{{i["name"]}}}" /></p>
+{{% elif i["type"] == "plone.app.textfield.RichText" %}}
+      <p><b>{{{i["name"]}}}:</b> <div style="border:1px solid magenta" tal:content="view/get_{{{i["name"]}}}" /></p>
+{{% else %}}
+      <p><b>{{{i["name"]}}}:</b> <div style="border:1px solid cyan" tal:content="view/get_{{{i["name"]}}}" /></p>
+{{% endif %}}
+{{% endfor %}}
+
+  </metal:block>
+  </metal:content-core>
+</body>
+</html>

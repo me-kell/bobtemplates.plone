@@ -1,0 +1,16 @@
+<model
+    xmlns="http://namespaces.plone.org/supermodel/schema"
+    xmlns:security="http://namespaces.plone.org/supermodel/security"
+    xmlns:form="http://namespaces.plone.org/supermodel/form"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="{{{ package.dottedname }}}">
+  <schema>
+{{% for i in my_schema %}}
+    <field name="{{{i["name"]}}}" type="{{{i["type"]}}}">
+      <title>{{{i["name"]}}}</title>
+      <description>{{{i["type"]}}}</description>
+      <required>False</required>
+    </field>
+{{% endfor %}}
+  </schema>
+</model>

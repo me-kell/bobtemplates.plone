@@ -150,3 +150,11 @@ def plone_mockup_pattern():
     reg.plonecli_alias = "mockup_pattern"
     reg.depend_on = "plone_addon"
     return reg
+
+def plone_content_type_with_view():
+    reg = RegEntry()
+    reg.template = "bobtemplates.plone:content_type_with_view"
+    reg.plonecli_alias = "content_type_with_view"
+    reg.depend_on = "plone_addon"
+    return reg
+
