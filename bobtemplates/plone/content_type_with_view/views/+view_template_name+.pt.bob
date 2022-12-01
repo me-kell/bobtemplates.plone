@@ -27,6 +27,7 @@
       <p><b>{{{i["name"]}}}:</b> <div style="border:1px solid cyan" tal:content="view/get_{{{i["name"]}}}" /></p>
 {{% endif %}}
 {{% endfor %}}
+      <p><b>delegated_result:</b> <div style="border:1px solid blue" tal:content="view/get_delegated_result" /></p>
 
   </metal:block>
   </metal:content-core>
