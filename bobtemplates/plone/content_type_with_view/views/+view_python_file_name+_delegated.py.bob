@@ -1,0 +1,3 @@
+def get_delegated_result(view):
+    result = f"result delegated by {{{ view }}}"
+    return result
