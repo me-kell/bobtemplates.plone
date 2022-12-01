@@ -40,6 +40,12 @@ class {{{ view_python_class_name }}}({{{ view_base_class }}}):
     def get_{{{i["name"]}}}(self):
         return f"{ self.context.{{{i["name"]}}} }"
 
+    # delegate code for @@reload to work
+    def get_delegated_result(self):
+        import {{{ package.dottedname }}}.views.{{{ view_python_file_name }}}_delegated
+        result = {{{ package.dottedname }}}.views.{{{ view_python_file_name }}}_delegated.get_delegated_result(self)
+        return f"{ result }"
+
 {{% endif %}}
 {{% endfor %}}
     def __call__(self):
